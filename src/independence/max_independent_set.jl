@@ -18,10 +18,8 @@ The independent set is found by solving the following linear program:
 \end{align*}
 ```
 
-The default optimizer is [Cbc](https://www.coin-or.org/Cbc/) as provided by
-[Cbc.jl](https://github.com/jump-dev/Cbc.jl). You may provide a different optimizer by passing
-an optimizer constructer (such `Cbc.Optimizer` or `()->Cbc.Optimizer()`) to the `optimizer`
-parameter.
+The default optimizer is [Cbc](https://www.coin-or.org/Cbc/) as provided by [Cbc.jl](https://github.com/jump-dev/Cbc.jl).
+You may provide a different optimizer by passing an optimizer constructer (such `Cbc.Optimizer` or `()->Cbc.Optimizer()`) to the `optimizer` parameter.
 
 ### Example
 ```jldoctest
