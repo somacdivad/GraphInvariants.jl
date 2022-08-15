@@ -10,6 +10,7 @@ testdigraphs = testgraphs
 
 tests = [
     "independence/max_independent_set",
+    "independence/independence_number",
 ]
 
 @testset "GraphInvariants.jl" begin
