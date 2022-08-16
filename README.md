@@ -1,12 +1,12 @@
 # GraphInvariants.jl
 
-[![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://somacdivad.github.io/GraphInvariants.jl/stable/)
+<!-- [![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://somacdivad.github.io/GraphInvariants.jl/stable/) -->
 [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://somacdivad.github.io/GraphInvariants.jl/dev/)
 [![Build Status](https://github.com/somacdivad/GraphInvariants.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/somacdivad/GraphInvariants.jl/actions/workflows/CI.yml?query=branch%3Amain)
 [![Coverage](https://codecov.io/gh/somacdivad/GraphInvariants.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/somacdivad/GraphInvariants.jl)
 [![Code Style: Blue](https://img.shields.io/badge/code%20style-blue-4495d1.svg)](https://github.com/invenia/BlueStyle)
 [![ColPrac: Contributor's Guide on Collaborative Practices for Community Packages](https://img.shields.io/badge/ColPrac-Contributor's%20Guide-blueviolet)](https://github.com/SciML/ColPrac)
-[![PkgEval](https://JuliaCI.github.io/NanosoldierReports/pkgeval_badges/G/GraphInvariants.svg)](https://JuliaCI.github.io/NanosoldierReports/pkgeval_badges/report.html)
+<!-- [![PkgEval](https://JuliaCI.github.io/NanosoldierReports/pkgeval_badges/G/GraphInvariants.svg)](https://JuliaCI.github.io/NanosoldierReports/pkgeval_badges/report.html) -->
 
 ## Overview
 
@@ -16,7 +16,7 @@ The goal of *GraphInvariants.jl* is to provide a wide range of functions for com
 
 ## Installation
 
-Currently, *GraphInvariants.jl* is not a registered Julia package, but you can be installed from this repository's URL:
+Currently, *GraphInvariants.jl* is not a registered Julia package, but can be installed from this repository's URL:
 
 ```julia-repl
 pkg> add https://github.com/somacdivad/GraphInvariants.jl
@@ -57,9 +57,10 @@ This project is still in its early stages. We plan to implement the following in
 - [ ] Independent domination number
 - [ ] Matching number
 
-More invariants will be added in later version, including:
+More invariants will be added in later versions, including:
 
 - Zero forcing number
 - Topological indices, like the Randić and Zagreb indices
 - Residue
 - And more...
+  
