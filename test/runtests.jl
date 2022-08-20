@@ -9,6 +9,7 @@ testgraphs(gs...) = vcat((testgraphs(g) for g in gs)...)
 testdigraphs = testgraphs
 
 tests = [
+    "cliques/clique_number",
     "independence/max_independent_set",
     "independence/independence_number",
 ]
