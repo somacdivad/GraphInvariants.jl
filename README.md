@@ -49,7 +49,7 @@ The full documentation is a work in progress, but is available on [GitHub Pages]
 This project is still in its early stages. We plan to implement the following invariants for the version `0.1.0` release:
 
 - [ ] Chromatic number
-- [ ] Clique number
+- [x] Clique number
 - [x] Independence number
 - [ ] Domination number
 - [ ] Total domination number
