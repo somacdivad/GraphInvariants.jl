@@ -35,6 +35,9 @@ struct IndependenceNumber <: AbstractOptimalCardinality end
 struct MaximumClique <: AbstractOptimalSet end
 struct CliqueNumber <: AbstractOptimalCardinality end
 
+struct MinimumProperColoring <: AbstractOptimalSet end
+struct ChromaticNumber <: AbstractOptimalCardinality end
+
 struct MinimumDominatingSet <: AbstractOptimalSet end
 struct DominationNumber <: AbstractOptimalCardinality end
 
@@ -87,6 +90,9 @@ include("basics/from_graphs.jl")
 include("cliques/maximimum_clique.jl")
 include("cliques/clique_number.jl")
 
+include("chromatic_colorings/proper_colorings.jl")
+include("chromatic_colorings/chromatic_number.jl")
+
 include("degree_sequence_invariants/havel_hakimi_residue.jl")
 
 include("domination/minimum_dominating_sets.jl")
@@ -122,6 +128,9 @@ export IndependenceNumber
 
 export MaximumClique
 export CliqueNumber
+
+export MinimumProperColoring
+export ChromaticNumber
 
 export MinimumDominatingSet
 export DominationNumber
