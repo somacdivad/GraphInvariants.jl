@@ -5,15 +5,17 @@ using Graphs
 using HiGHS
 using JuMP
 
+
+# Include the graph operation rules module.
+include("GraphRules/GraphRules.jl")
+using .GraphRules
+
 ######################### Define Primary Abstract Types #################################
 
 abstract type AbstractOptimalSet end
 abstract type AbstractOptimalCardinality end
 abstract type AbstractCardinality end
-abstract type AbstractGraphRule end
-
 abstract type AbstractDegreeSequenceInvariant end
-abstract type AbstractDegreeSequenceRule end
 
 #################### Basic Graph Properties taken from Graphs.jl ##################
 
@@ -65,25 +67,17 @@ struct MatchingNumber <: AbstractOptimalCardinality end
 struct MinimumZeroForcingSet <: AbstractOptimalSet end
 struct ZeroForcingNumber <: AbstractOptimalCardinality end
 
-############################ Graph Operations as Rules ##################################
-
-struct DominationRule <: AbstractGraphRule end
-struct ZeroForcingRule <: AbstractGraphRule end
-
 ##################### Graphical Degree Sequence Invariants ##############################
 
 struct HavelHakimiResidue <: AbstractDegreeSequenceInvariant end
 
 ##################### Graphical Degree Sequence Operations ##############################
 
-struct HavelHakimiRule <: AbstractDegreeSequenceRule end
+
 
 #############################################################################################
 
 # Include files from src.
-include("apply/domination_rule.jl")
-include("apply/zero_forcing_rule.jl")
-include("apply/havel_hakimi.jl")
 
 include("basics/from_graphs.jl")
 
