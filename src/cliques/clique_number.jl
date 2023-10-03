@@ -18,7 +18,11 @@ julia> clique_number(g)
 2
 ```
 """
-function clique_number(g::AbstractGraph)
+function compute(
+    ::Type{CliqueNumber},
+    g::AbstractGraph{T};
+    optimizer=HiGHS.Optimizer,
+) where T <: Int
     h = complement(g)
-    return independence_number(h)
+    return compute(IndependenceNumber, h; optimizer=optimizer)
 end

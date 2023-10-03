@@ -1,5 +1,6 @@
 @doc raw"""
-    function max_independent_set(
+    function compute(
+        ::Type{MaximumIndependentSet},
         g::AbstractGraph{T};
         optimizer=Cbc.Optimizer,
     ) where T <: Integer
@@ -18,9 +19,6 @@ The independent set is found by solving the following linear program:
 \end{align*}
 ```
 
-The default optimizer is [Cbc](https://www.coin-or.org/Cbc/) as provided by [Cbc.jl](https://github.com/jump-dev/Cbc.jl).
-You may provide a different optimizer by passing an optimizer constructer (such `Cbc.Optimizer` or `()->Cbc.Optimizer()`) to the `optimizer` parameter.
-
 ### Example
 ```jldoctest
 julia> using Graphs
@@ -28,16 +26,17 @@ julia> using Graphs
 julia> g = path_graph(5)
 {5, 4} undirected simple Int64 graph
 
-julia> max_independent_set(g)
+julia> compute(MaximumIndependentSet, g)
 3-element Vector{Int64}:
  1
  3
  5
 ```
 """
-function max_independent_set(
+function compute(
+    ::Type{MaximumIndependentSet},
     g::AbstractGraph{T};
-    optimizer=Cbc.Optimizer,
+    optimizer=HiGHS.Optimizer,
 ) where T <: Integer
     model = JuMP.Model(optimizer)
     JuMP.set_silent(model)

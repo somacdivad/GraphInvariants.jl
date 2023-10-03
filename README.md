@@ -36,7 +36,7 @@ julia> using GraphInvariants
 julia> g = cycle_graph(5)
 {5, 5} undirected simple Int64 graph
 
-julia> independence_number(g)
+julia> compute(IndependenceNumber, g)
 2
 ```
 
@@ -51,16 +51,12 @@ This project is still in its early stages. We plan to implement the following in
 - [ ] Chromatic number
 - [x] Clique number
 - [x] Independence number
-- [ ] Domination number
-- [ ] Total domination number
+- [x] Domination number
+- [x] Total domination number
 - [ ] Connected domination number
-- [ ] Independent domination number
-- [ ] Matching number
+- [x] Independent domination number
+- [x] Matching number
+- [x] Residue
+- [x] Zero forcing number
 
-More invariants will be added in later versions, including:
 
-- Zero forcing number
-- Topological indices, like the Randić and Zagreb indices
-- Residue
-- And more...
-  

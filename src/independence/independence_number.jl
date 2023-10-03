@@ -1,5 +1,6 @@
 @doc raw"""
-    function independence_number(
+    function compute(
+        ::Type{CliqueNumber},
         g::AbstractGraph{T};
         optimizer=Cbc.Optimizer,
     ) where T <: Integer
@@ -17,14 +18,15 @@ julia> using Graphs
 julia> g = cycle_graph(5)
 {5, 5} undirected simple Int64 graph
 
-julia> independence_number(g)
+julia> compute(IndependenceNumber, g)
 2
 ```
 """
-function independence_number(
+function compute(
+    ::Type{IndependenceNumber},
     g::AbstractGraph{T};
-    optimizer=Cbc.Optimizer,
+    optimizer=HiGHS.Optimizer,
 ) where T <: Integer
-    max_ind_set = max_independent_set(g; optimizer=optimizer)
+    max_ind_set = compute(MaximumIndependentSet, g; optimizer=optimizer)
     return length(max_ind_set)
 end
