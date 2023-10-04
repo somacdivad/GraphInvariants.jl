@@ -38,11 +38,26 @@ function compute(
     g::AbstractGraph{T};
     optimizer=HiGHS.Optimizer,
 ) where T <: Integer
-    model = JuMP.Model(optimizer)
-    JuMP.set_silent(model)
+
+    model = Model(optimizer)  # You can replace Cbc with your preferred optimizer
+    JuMP.set_silent(model)  # Suppress solver output
+
+    # Define binary variables for each vertex
     @variable(model, x[vertices(g)], Bin)
-    @objective(model, Max, sum(x))
-    @constraint(model, [e = edges(g)], x[src(e)] + x[dst(e)] <= 1)
+
+    # Define the objective function
+    @objective(model, Max, sum(x[v] for v in vertices(g)))
+
+    # Add constraints: adjacent vertices cannot both be in the independent set
+    for e in edges(g)
+        @constraint(model, x[src(e)] + x[dst(e)] <= 1)
+    end
+
+    # Solve the optimization problem
     optimize!(model)
-    return [v for v in vertices(g) if value(x[v]) == 1.0]
+
+    # Extract the solution
+    independent_set = [v for v in vertices(g) if value(x[v]) == 1.0]
+
+    return independent_set
 end
