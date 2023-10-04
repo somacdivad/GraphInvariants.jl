@@ -69,6 +69,7 @@ struct ZeroForcingNumber <: AbstractOptimalCardinality end
 
 ##################### Graphical Degree Sequence Invariants ##############################
 
+struct SlaterNumber <: AbstractDegreeSequenceInvariant end
 struct HavelHakimiResidue <: AbstractDegreeSequenceInvariant end
 
 ##################### Graphical Degree Sequence Operations ##############################
@@ -88,6 +89,7 @@ include("chromatic_colorings/proper_colorings.jl")
 include("chromatic_colorings/chromatic_number.jl")
 
 include("degree_sequence_invariants/havel_hakimi_residue.jl")
+include("degree_sequence_invariants/slater.jl")
 
 include("domination/minimum_dominating_sets.jl")
 include("domination/domination_numbers.jl")
@@ -157,6 +159,7 @@ export ZeroForcingRule
 
 export HavelHakimiRule
 export HavelHakimiResidue
+export SlaterNumber
 
 export apply!
 export compute
