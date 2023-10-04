@@ -71,6 +71,12 @@ struct ZeroForcingNumber <: AbstractOptimalCardinality end
 
 struct SlaterNumber <: AbstractDegreeSequenceInvariant end
 struct HavelHakimiResidue <: AbstractDegreeSequenceInvariant end
+struct AnnihilationNumber <: AbstractDegreeSequenceInvariant end
+struct SubTotalDominationNumber <: AbstractDegreeSequenceInvariant end
+struct SubKDominationNumber <: AbstractDegreeSequenceInvariant
+    k::Int
+end
+SubKDominationNumber(;k=1) = SubKDominationNumber(k)
 
 ##################### Graphical Degree Sequence Operations ##############################
 
@@ -90,6 +96,7 @@ include("chromatic_colorings/chromatic_number.jl")
 
 include("degree_sequence_invariants/havel_hakimi_residue.jl")
 include("degree_sequence_invariants/slater.jl")
+include("degree_sequence_invariants/annihilation.jl")
 
 include("domination/minimum_dominating_sets.jl")
 include("domination/domination_numbers.jl")
@@ -160,6 +167,9 @@ export ZeroForcingRule
 export HavelHakimiRule
 export HavelHakimiResidue
 export SlaterNumber
+export AnnihilationNumber
+export SubTotalDominationNumber
+export SubKDominationNumber
 
 export apply!
 export compute
