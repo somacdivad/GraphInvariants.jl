@@ -28,6 +28,7 @@ struct AverageDegree <: AbstractCardinality end
 
 struct Radius <: AbstractCardinality end
 struct Diameter <: AbstractCardinality end
+struct Girth <: AbstractCardinality end
 
 ##################### Graph Optimal Sets and Cardinalities ##############################
 
@@ -118,6 +119,7 @@ export GraphRule
 
 export Order
 export Size
+export Girth
 
 export MaximumDegree
 export MinimumDegree
