@@ -1,5 +1,6 @@
 @doc raw"""
-    function max_independent_set(
+    function compute(
+        ::Type{MaximumIndependentSet},
         g::AbstractGraph{T};
         optimizer=Cbc.Optimizer,
     ) where T <: Integer
@@ -18,9 +19,6 @@ The independent set is found by solving the following linear program:
 \end{align*}
 ```
 
-The default optimizer is [Cbc](https://www.coin-or.org/Cbc/) as provided by [Cbc.jl](https://github.com/jump-dev/Cbc.jl).
-You may provide a different optimizer by passing an optimizer constructer (such `Cbc.Optimizer` or `()->Cbc.Optimizer()`) to the `optimizer` parameter.
-
 ### Example
 ```jldoctest
 julia> using Graphs
@@ -28,22 +26,38 @@ julia> using Graphs
 julia> g = path_graph(5)
 {5, 4} undirected simple Int64 graph
 
-julia> max_independent_set(g)
+julia> compute(MaximumIndependentSet, g)
 3-element Vector{Int64}:
  1
  3
  5
 ```
 """
-function max_independent_set(
+function compute(
+    ::Type{MaximumIndependentSet},
     g::AbstractGraph{T};
-    optimizer=Cbc.Optimizer,
+    optimizer=HiGHS.Optimizer,
 ) where T <: Integer
-    model = JuMP.Model(optimizer)
-    JuMP.set_silent(model)
+
+    model = Model(optimizer)  # You can replace Cbc with your preferred optimizer
+    JuMP.set_silent(model)  # Suppress solver output
+
+    # Define binary variables for each vertex
     @variable(model, x[vertices(g)], Bin)
-    @objective(model, Max, sum(x))
-    @constraint(model, [e = edges(g)], x[src(e)] + x[dst(e)] <= 1)
+
+    # Define the objective function
+    @objective(model, Max, sum(x[v] for v in vertices(g)))
+
+    # Add constraints: adjacent vertices cannot both be in the independent set
+    for e in edges(g)
+        @constraint(model, x[src(e)] + x[dst(e)] <= 1)
+    end
+
+    # Solve the optimization problem
     optimize!(model)
-    return [v for v in vertices(g) if value(x[v]) == 1.0]
+
+    # Extract the solution
+    independent_set = [v for v in vertices(g) if value(x[v]) == 1.0]
+
+    return independent_set
 end
